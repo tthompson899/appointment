@@ -18,11 +18,11 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
-$count = Type::count();
-dd($count);
+
+
 $factory->define(Appointment::class, function (Faker $faker) {
     return [
-        'type_id' => rand(1, 17),
+        'type_id' => rand(Type::first()->id, Type::count()),
         'date_of_appointment' => $faker->dateTimeBetween($startDate = '2020-07-31', $endDate = '+2 years', $timezone = null),
         'completed' => $faker->boolean(),
         'cancelled' => $faker->boolean(),
@@ -32,7 +32,7 @@ $factory->define(Appointment::class, function (Faker $faker) {
 
 $factory->define(UserAppointment::class, function (Faker $faker) {
     return [
-        'user_id' => rand(1, 50),
-        'appointment_id' => rand(1, 50)
+        'user_id' => rand(User::first()->id, User::count()),
+        'appointment_id' => rand(Appointment::first()->id, Appointment::count())
     ];
 });
