@@ -5,6 +5,7 @@
 use App\User;
 use App\Appointment;
 use App\UserAppointment;
+use App\Type;
 use Faker\Generator as Faker;
 
 $factory->define(User::class, function (Faker $faker) {
@@ -17,6 +18,8 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
+$count = Type::count();
+dd($count);
 $factory->define(Appointment::class, function (Faker $faker) {
     return [
         'type_id' => rand(1, 17),
