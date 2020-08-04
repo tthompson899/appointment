@@ -1,5 +1,9 @@
 <?php
 
+use App\UserAppointment;
+use App\Appointment;
+use App\Type;
+use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
@@ -15,11 +19,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
-        // User
         factory(User::class, 50)->create();
 
-        // Types
         $types = [
             'annual cleaning',
              'bonding',
@@ -38,8 +39,8 @@ class DatabaseSeeder extends Seeder
              'root canal',
              'veneers',
              'whitening'
-         ];
- 
+        ];
+
         foreach ($types as $type) {
             \DB::table('types')->insert([
                 'name' => $type,
@@ -47,12 +48,9 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ]);
         }
-     
-        // Appointment
-        factory(App\Appointment::class, 50)->create();
-        // $this->call(UserAppointmentSeeder::class);
 
-        // User appointment
+        factory(Appointment::class, 50)->create();
+
         factory(UserAppointment::class, 50)->create();
     }
 }
