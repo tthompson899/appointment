@@ -44,8 +44,8 @@ class DatabaseSeeder extends Seeder
         foreach ($types as $type) {
             \DB::table('types')->insert([
                 'name' => $type,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('America/Chicago'),
+                'updated_at' => Carbon::now('America/Chicago'),
             ]);
         }
 
