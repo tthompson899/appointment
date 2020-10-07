@@ -50,7 +50,5 @@ class DatabaseSeeder extends Seeder
         }
 
         factory(Appointment::class, 50)->create();
-
-        factory(UserAppointment::class, 50)->create();
     }
 }

@@ -5,7 +5,6 @@
 use App\Appointment;
 use App\User;
 use App\Type;
-use App\UserAppointment;
 use Faker\Generator as Faker;
 use Illuminate\Support\Carbon;
 
@@ -22,20 +21,12 @@ $factory->define(User::class, function (Faker $faker) {
 
 $factory->define(Appointment::class, function (Faker $faker) {
     return [
+        'user_id' => rand(User::first()->id, User::count()),
         'type_id' => rand(Type::first()->id, Type::count()),
-        'date_of_appointment' => $faker->dateTimeBetween('2020-08-03', '+2 years', 'America/Chicago'),
+        'date_of_appointment' => $faker->dateTimeBetween('2020-10-20', '+2 years', 'America/Chicago'),
         'completed' => $faker->boolean(false),
         'cancelled' => $faker->boolean(false),
         'no_show' => $faker->boolean(false),
-        'created_at' => Carbon::now('America/Chicago'),
-        'updated_at' => Carbon::now('America/Chicago')
-    ];
-});
-
-$factory->define(UserAppointment::class, function (Faker $faker) {
-    return [
-        'user_id' => rand(User::first()->id, User::count()),
-        'appointment_id' => rand(Appointment::first()->id, Appointment::count()),
         'created_at' => Carbon::now('America/Chicago'),
         'updated_at' => Carbon::now('America/Chicago')
     ];
