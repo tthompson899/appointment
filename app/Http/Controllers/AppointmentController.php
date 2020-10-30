@@ -28,11 +28,7 @@ class AppointmentController extends Controller
     {
         $params = $request->query();
 
-        // @todo add ability to search by name, dob, appointment date and show appointments for user
         $userAppts = $this->appointments->search($params);
-        // dd(Appointment::find(43)->user);
-        // dd(User::find(50)->appointments->first()->type);
-        // dd(User::find(50)->appointments->first()->type);
 
         return $userAppts;
     }
