@@ -11,4 +11,9 @@ class Type extends Model
     {
         return $this->belongsToMany('App\Appointment', 'appointments');
     }
+
+    public function apps()
+    {
+        return $this->hasMany('App\Appointment');
+    }
 }

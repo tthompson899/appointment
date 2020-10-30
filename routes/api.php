@@ -18,3 +18,5 @@ Route::get('/users', 'UserController@index');
 Route::post('/users', 'UserController@create');
 Route::put('/users/{id}', 'UserController@update');
 Route::delete('/users/{id}', 'UserController@delete');
+
+Route::get('/appointments', 'AppointmentController@index');
