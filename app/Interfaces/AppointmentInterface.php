@@ -4,5 +4,5 @@ namespace App\Interfaces;
 
 interface AppointmentInterface
 {
-    public function search(array $params);
+    public function index(array $params);
 }

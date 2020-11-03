@@ -3,14 +3,13 @@
 namespace App\Repositories;
 
 use App\Interfaces\AppointmentInterface;
-use App\Appointment;
 use App\User;
-use Illuminate\Support\Facades\Log;
+use App\Appointment;
 use Illuminate\Support\Arr;
 
 class AppointmentRepository implements AppointmentInterface
 {
-    public function search($params)
+    public function index($params)
     {
         $appts = User::with('appointments', 'appointments.type');
 
@@ -31,7 +30,7 @@ class AppointmentRepository implements AppointmentInterface
         }
 
         if ($appointment_date = Arr::get($params, 'date_of_appointment')) {
-            $appts = Appointment::with('user', 'type')->where('date_of_appointment', 'like', $appointment_date . '%')->get();
+            $appts = Appointment::with('user', 'type')->where('date_of_appointment', 'like', $appointment_date . '%');
         }
 
         return response()->json([$appts->get()]);

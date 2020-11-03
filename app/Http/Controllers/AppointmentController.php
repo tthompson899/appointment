@@ -3,32 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Interfaces\AppointmentInterface;
-use App\Interfaces\UserInterface;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {
     /**
-     * @var UserInterface
-     */
-    protected $user;
-
-    /**
      * @var AppointmentInterface
      */
-    protected $appointments;
+    protected $appointment;
 
-    public function __construct(UserInterface $user, AppointmentInterface $appt)
+    public function __construct(AppointmentInterface $appt)
     {
-        $this->user = $user;
-        $this->appointments = $appt;
+        $this->appointment = $appt;
     }
 
     public function index(Request $request)
     {
         $params = $request->query();
 
-        $userAppts = $this->appointments->search($params);
+        $userAppts = $this->appointment->index($params);
 
         return $userAppts;
     }
