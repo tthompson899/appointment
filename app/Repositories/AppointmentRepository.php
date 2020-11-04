@@ -35,4 +35,34 @@ class AppointmentRepository implements AppointmentInterface
 
         return response()->json([$appts->get()]);
     }
+
+    public function create($params)
+    {
+        $user = User::find(Arr::get($params, 'user'));
+
+        $appt = $user->appointments()->create([
+            'date_of_appointment' => Arr::get($params, 'date_of_appointment'),
+            'type_id' => Arr::get($params, 'type')
+        ]);
+
+        return response()->json($appt);
+    }
+
+    public function update($id, $params)
+    {
+        $appt = Appointment::find($id);
+
+        return $appt->update($params);
+    }
+
+    public function delete($id)
+    {
+        $appt = Appointment::find($id);
+        
+        if (empty($appt)) {
+            return 'Appointment not found!';
+        }
+
+        return $appt->delete();
+    }
 }

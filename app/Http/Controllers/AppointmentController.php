@@ -25,4 +25,33 @@ class AppointmentController extends Controller
 
         return $userAppts;
     }
+
+    public function create(Request $request)
+    {
+        $params = $request->query();
+
+        $this->appointment->create($params);
+    }
+
+    public function update($id, Request $request)
+    {
+        $params = $request->query();
+        \Log::info('update_params', [
+            'params' => $params
+        ]);
+        $appt = $this->appointment->update($id, $params);
+
+        if (! $appt) {
+            return 'Unable to update appointment';
+        }
+
+        return 'Appointment has been updated.';
+    }
+
+    public function delete($id)
+    {
+        $appt = $this->appointment->delete($id);
+
+        return $appt;
+    }
 }
