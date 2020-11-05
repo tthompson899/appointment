@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Interfaces\AppointmentInterface;
 use App\User;
 use App\Appointment;
+use App\Type;
 use Illuminate\Support\Arr;
 
 class AppointmentRepository implements AppointmentInterface
@@ -40,15 +41,19 @@ class AppointmentRepository implements AppointmentInterface
     public function create($params)
     {
         $user = User::find(Arr::get($params, 'user_id'));
-        // @todo check if user if found, if not...return false 'no user found'
 
         if (! $user) {
-            return 'Unable to create appointment: User not found';
+            return 'Unable to create appointment: User not found!';
+        }
+
+        if (! $type = Type::find(Arr::get($params, 'type_id'))) {
+            return 'Unable to create appointment: Type does not exist!';
         }
 
         $appt = $user->appointments()->create([
             'date_of_appointment' => Arr::get($params, 'date_of_appointment'),
-            'type_id' => Arr::get($params, 'type_id')
+            // @todo make sure it's a valid type_id
+            'type_id' => $type->id
         ]);
 
         return response()->json($appt);
@@ -57,7 +62,6 @@ class AppointmentRepository implements AppointmentInterface
     public function update($id, $params)
     {
         $appt = Appointment::find($id);
-        // @todo check if appointment is found, if not return false with error 'Appointment not found'
 
         if (! $appt) {
             return 'Unable to update appointment: Appointment does not exist.';
