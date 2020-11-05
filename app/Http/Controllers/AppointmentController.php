@@ -30,7 +30,9 @@ class AppointmentController extends Controller
     {
         $params = $request->query();
 
-        $this->appointment->create($params);
+        $newAppt = $this->appointment->create($params);
+
+        return $newAppt;
     }
 
     public function update($id, Request $request)

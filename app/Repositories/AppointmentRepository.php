@@ -30,6 +30,7 @@ class AppointmentRepository implements AppointmentInterface
         }
 
         if ($appointment_date = Arr::get($params, 'date_of_appointment')) {
+            // @todo Can I use the user appointments relationship to find the appointments?
             $appts = Appointment::with('user', 'type')->where('date_of_appointment', 'like', $appointment_date . '%');
         }
 
@@ -38,11 +39,16 @@ class AppointmentRepository implements AppointmentInterface
 
     public function create($params)
     {
-        $user = User::find(Arr::get($params, 'user'));
+        $user = User::find(Arr::get($params, 'user_id'));
+        // @todo check if user if found, if not...return false 'no user found'
+
+        if (! $user) {
+            return 'Unable to create appointment: User not found';
+        }
 
         $appt = $user->appointments()->create([
             'date_of_appointment' => Arr::get($params, 'date_of_appointment'),
-            'type_id' => Arr::get($params, 'type')
+            'type_id' => Arr::get($params, 'type_id')
         ]);
 
         return response()->json($appt);
@@ -51,7 +57,11 @@ class AppointmentRepository implements AppointmentInterface
     public function update($id, $params)
     {
         $appt = Appointment::find($id);
+        // @todo check if appointment is found, if not return false with error 'Appointment not found'
 
+        if (! $appt) {
+            return 'Unable to update appointment: Appointment does not exist.';
+        }
         return $appt->update($params);
     }
 
@@ -59,7 +69,7 @@ class AppointmentRepository implements AppointmentInterface
     {
         $appt = Appointment::find($id);
         
-        if (empty($appt)) {
+        if (! $appt) {
             return 'Appointment not found!';
         }
 
