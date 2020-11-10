@@ -20,3 +20,6 @@ Route::put('/users/{id}', 'UserController@update');
 Route::delete('/users/{id}', 'UserController@delete');
 
 Route::get('/appointments', 'AppointmentController@index');
+Route::post('/appointment', 'AppointmentController@create');
+Route::put('/appointment/{id}', 'AppointmentController@update');
+Route::delete('/appointment/{id}', 'AppointmentController@delete');
