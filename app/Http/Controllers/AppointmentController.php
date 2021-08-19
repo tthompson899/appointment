@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Interfaces\AppointmentInterface;
 use Illuminate\Http\Request;
+use Swift_SmtpTransport;
+use Swift_Mailer;
+use Swift_Message;
 
 class AppointmentController extends Controller
 {
@@ -32,6 +35,9 @@ class AppointmentController extends Controller
 
         $newAppt = $this->appointment->create($params);
 
+        // send email
+        $this->sendEmail();
+
         return $newAppt;
     }
 
@@ -55,5 +61,26 @@ class AppointmentController extends Controller
         $appt = $this->appointment->delete($id);
 
         return $appt;
+    }
+
+    private function sendEmail()
+    {
+        // Create the Transport
+        $transport = (new Swift_SmtpTransport(env('MAIL_HOST'), env('MAIL_PORT')))
+        ->setUsername(env('MAIL_USERNAME'))
+        ->setPassword(env('MAIL_PASSWORD'))
+        ;
+
+        $mailer = new Swift_Mailer($transport);
+
+        // Create a message
+        $message = (new Swift_Message('AYYYYY YO'))
+        ->setFrom(['appointment@tthompson899.com' => 'Tiffany'])
+        ->setTo(['email@example.com'])
+        ->setBody('Here is the message itself')
+        ;
+
+        // Send the message
+        $result = $mailer->send($message);
     }
 }
