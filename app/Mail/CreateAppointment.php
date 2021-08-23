@@ -29,6 +29,7 @@ class CreateAppointment extends Mailable
     public function build()
     {
         return $this->from('appointments@dentist.com', 'Dentist')
+                    ->subject('New Appointment')
                     ->view('emails.create-appointment');
     }
 }
