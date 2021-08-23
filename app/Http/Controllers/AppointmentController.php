@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Appointment;
 use App\Interfaces\AppointmentInterface;
 use Illuminate\Http\Request;
-use Swift_SmtpTransport;
-use Swift_Mailer;
-use Swift_Message;
+// use Swift_SmtpTransport;
+// use Swift_Mailer;
+// use Swift_Message;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CreateAppointment;
 
 class AppointmentController extends Controller
 {
@@ -36,7 +39,7 @@ class AppointmentController extends Controller
         $newAppt = $this->appointment->create($params);
 
         // send email
-        $this->sendEmail();
+        $this->sendEmail($newAppt);
 
         return $newAppt;
     }
@@ -63,24 +66,8 @@ class AppointmentController extends Controller
         return $appt;
     }
 
-    private function sendEmail()
+    private function sendEmail(Appointment $appointmentDetails)
     {
-        // Create the Transport
-        $transport = (new Swift_SmtpTransport(env('MAIL_HOST'), env('MAIL_PORT')))
-        ->setUsername(env('MAIL_USERNAME'))
-        ->setPassword(env('MAIL_PASSWORD'))
-        ;
-
-        $mailer = new Swift_Mailer($transport);
-
-        // Create a message
-        $message = (new Swift_Message('AYYYYY YO'))
-        ->setFrom(['appointment@tthompson899.com' => 'Tiffany'])
-        ->setTo(['email@example.com'])
-        ->setBody('Here is the message itself')
-        ;
-
-        // Send the message
-        $result = $mailer->send($message);
+        Mail::to($appointmentDetails->user->email)->send(new CreateAppointment());
     }
 }
