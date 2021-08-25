@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use App\Appointment;
 use App\Interfaces\AppointmentInterface;
 use Illuminate\Http\Request;
-// use Swift_SmtpTransport;
-// use Swift_Mailer;
-// use Swift_Message;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CreateAppointment;
 
@@ -68,6 +65,6 @@ class AppointmentController extends Controller
 
     private function sendEmail(Appointment $appointmentDetails)
     {
-        Mail::to($appointmentDetails->user->email)->send(new CreateAppointment());
+        Mail::to($appointmentDetails->user->email)->send(new CreateAppointment($appointmentDetails));
     }
 }
