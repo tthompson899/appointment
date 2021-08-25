@@ -10,7 +10,7 @@ use Illuminate\Support\Carbon;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        'name' => $faker->firstName . ' ' . $faker->lastName,
         'email' => $faker->safeEmail,
         'phone' => $faker->phoneNumber,
         'date_of_birth' => $faker->dateTimeBetween('-80 years', '-2 years', 'America/Chicago'),
