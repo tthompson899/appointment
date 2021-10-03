@@ -5,7 +5,7 @@ During covid, my dentist office specifically kept calling me to change appointme
 
 This api is specifically for a dentist’s office to help manage their database.
 
-## If you would like to follow along in the series - The playlist link for this video can be found <a href = "https://www.youtube.com/playlist?list=PLxyLoVOL_gY5SzhYeWqDkKHxxl8hETqQb">here</a> <br>
+If you would like to follow along in the series - The playlist link for this video can be found <a href = "https://www.youtube.com/playlist?list=PLxyLoVOL_gY5SzhYeWqDkKHxxl8hETqQb">here</a> <br>
 
 ## Tech stack
     - Laravel/PHP
