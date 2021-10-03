@@ -10,8 +10,8 @@ use Illuminate\Support\Carbon;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->safeEmail,
+        'name' => $name = $faker->firstName . ' ' . $faker->lastName,
+        'email' => strtolower(str_replace(' ', '.', $name)) . '@' . $faker->safeEmailDomain(),
         'phone' => $faker->phoneNumber,
         'date_of_birth' => $faker->dateTimeBetween('-80 years', '-2 years', 'America/Chicago'),
         'created_at' => Carbon::now('America/Chicago'),

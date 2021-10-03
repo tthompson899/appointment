@@ -56,7 +56,7 @@ class AppointmentRepository implements AppointmentInterface
             'type_id' => $type->id
         ]);
 
-        return response()->json($appt);
+        return $appt;
     }
 
     public function update($id, $params)

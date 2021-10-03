@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Appointment;
 use App\Interfaces\AppointmentInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CreateAppointment;
 
 class AppointmentController extends Controller
 {
@@ -32,6 +35,9 @@ class AppointmentController extends Controller
 
         $newAppt = $this->appointment->create($params);
 
+        // send email
+        $this->sendEmail($newAppt);
+
         return $newAppt;
     }
 
@@ -55,5 +61,10 @@ class AppointmentController extends Controller
         $appt = $this->appointment->delete($id);
 
         return $appt;
+    }
+
+    private function sendEmail(Appointment $appointmentDetails)
+    {
+        Mail::to($appointmentDetails->user->email)->send(new CreateAppointment($appointmentDetails));
     }
 }
