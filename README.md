@@ -41,3 +41,7 @@ If you would like to follow along in the series - The playlist link for this vid
 Use Postman [install here](https://www.postman.com/downloads/) or browser to visit api route
     - Example route to visit [Get all users](http://appointment.test/api/users)
 
+## How to run Test
+- Initialise the database seeder by running the command: `php artisan db:seed`
+- Remove the tables and add new data: `php artisan migrate:fresh --seed`
+- Make your changes to the database then run the command again (`php artisan db:seed`) to confirm the changes.
