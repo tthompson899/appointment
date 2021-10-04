@@ -45,7 +45,7 @@ Use Postman [install here](https://www.postman.com/downloads/) or browser to vis
 - Initialise the database seeder by running the command: `php artisan db:seed`
 - Remove all tables and add new data: `php artisan migrate:fresh --seed`
 
-**If you need to make changes to the database;**
+**If you need to make changes to the database:**
 - Run the command: `php artisan migrate:fresh --seed`
 - Make your changes
 - Then run the command `php artisan db:seed` and confirm your changes in the database.
