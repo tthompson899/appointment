@@ -13,6 +13,12 @@ If you would like to follow along in the series - The playlist link for this vid
     - SQL
 
 ## Project setup
+- Create .env file
+    - This should be a replica of the .env.example except:
+    - `DB_DATABASE=appointment`
+    - `DB_USERNAME=root`
+    - `DB_PASSWORD=`
+    NOTE: Password and Username is whatever you set it to. To login to mysql in the command line type in this command: `mysql -u root -p`
 - Laravel valet
     - If you do not have Laravel Valet installed, follow the instructions [here](https://laravel.com/docs/7.x/valet#the-park-command) 
         ##### TL/DR
@@ -29,11 +35,11 @@ If you would like to follow along in the series - The playlist link for this vid
             - `cd ~/Code`
             - run `valet park`
     - Fork or clone project here into `~/Code` directory: [appointment api](git@github.com:tthompson899/appointment.git)
-    - Once project is cloned, spin up the website at [appointment.test/api](http://appointment.test/api/)
+    - Once project is cloned, spin up the website at [appointment.test/api/users](http://appointment.test/api/users)
 
 - MySQL
-    - `brew install mysql@5.7`
-    - `brew services start mysql@5.7`
+    - `brew install mysql`
+    - `brew services start mysql`
 
     - Once valet and project has been cloned locally, run `composer install`
 

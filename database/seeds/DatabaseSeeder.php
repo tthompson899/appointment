@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(User::class, 50)->create();
+        User::factory()->create(50);
 
         $types = [
             'annual cleaning',
