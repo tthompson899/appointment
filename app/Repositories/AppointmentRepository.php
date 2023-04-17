@@ -3,9 +3,9 @@
 namespace App\Repositories;
 
 use App\Interfaces\AppointmentInterface;
-use App\User;
-use App\Appointment;
-use App\Type;
+use App\Models\User;
+use App\Models\Appointment;
+use App\Models\Type;
 use Illuminate\Support\Arr;
 
 class AppointmentRepository implements AppointmentInterface
