@@ -1,9 +1,8 @@
 <?php
 
-use App\UserAppointment;
-use App\Appointment;
-use App\Type;
-use App\User;
+use App\Models\Appointment;
+use App\Models\Type;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
