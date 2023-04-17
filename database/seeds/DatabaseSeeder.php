@@ -23,22 +23,22 @@ class DatabaseSeeder extends Seeder
 
         $types = [
             'annual cleaning',
-             'bonding',
-             'bridges',
-             'crowns',
-             'dentures',
-             'fillings',
-             'hygiene',
-             'implants',
-             'inlays',
-             'invisalign_vid',
-             'orthodontics',
-             'partial dentures',
-             'perodontal',
-             'TMJ',
-             'root canal',
-             'veneers',
-             'whitening'
+            'bonding',
+            'bridges',
+            'crowns',
+            'dentures',
+            'fillings',
+            'hygiene',
+            'implants',
+            'inlays',
+            'invisalign_vid',
+            'orthodontics',
+            'partial dentures',
+            'perodontal',
+            'TMJ',
+            'root canal',
+            'veneers',
+            'whitening'
         ];
 
         foreach ($types as $type) {
@@ -49,6 +49,11 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        factory(Appointment::class, 50)->create();
+        for ($count=0; $count < 50; $count++) { 
+            Appointment::factory()->state([
+                'user_id' => User::all()->random()->id,
+                'type_id' => Type::all()->random()->id,
+            ])->create();
+        }
     }
 }
