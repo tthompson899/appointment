@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -41,7 +42,7 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($types as $type) {
-            \DB::table('types')->insert([
+            DB::table('types')->insert([
                 'name' => $type,
                 'created_at' => Carbon::now('America/Chicago'),
                 'updated_at' => Carbon::now('America/Chicago'),

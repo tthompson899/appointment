@@ -7,6 +7,7 @@ use App\Interfaces\AppointmentInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CreateAppointment;
+use Illuminate\Support\Facades\Log;
 
 class AppointmentController extends Controller
 {
@@ -44,7 +45,7 @@ class AppointmentController extends Controller
     public function update($id, Request $request)
     {
         $params = $request->query();
-        \Log::info('update_params', [
+        Log::info('update_params', [
             'params' => $params
         ]);
         $appt = $this->appointment->update($id, $params);
