@@ -34,7 +34,7 @@ class CreateAppointment extends Mailable
         $formatDateOfAppointment = Carbon::create($this->appointment->date_of_appointment)->toDayDateTimeString();
 
         return $this->from('appointments@dentist.com', 'Dentist')
-                    ->subject('New Appointment')
+                    ->subject('Test Appointment Dental')
                     ->view('emails.create-appointment')
                     ->with([
                         'appointmentDetail' => $this->appointment,

@@ -40,6 +40,7 @@ class AppointmentRepository implements AppointmentInterface
 
     public function create($params)
     {
+        // @todo Should those that are not users be able to create appointments?
         $user = User::find(Arr::get($params, 'user_id'));
 
         if (! $user) {
