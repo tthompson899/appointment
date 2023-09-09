@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Appointment;
+use App\Models\Appointment;
 use App\Interfaces\AppointmentInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;

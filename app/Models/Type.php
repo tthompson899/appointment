@@ -11,11 +11,11 @@ class Type extends Model
     
     public function appointments()
     {
-        return $this->belongsToMany('App\Appointment', 'appointments');
+        return $this->belongsToMany('App\Models\Appointment', 'appointments');
     }
 
     public function apps()
     {
-        return $this->hasMany('App\Appointment');
+        return $this->hasMany('App\Models\Appointment');
     }
 }

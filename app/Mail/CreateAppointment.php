@@ -5,7 +5,7 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use App\Appointment;
+use App\Models\Appointment;
 use Illuminate\Support\Carbon;
 
 class CreateAppointment extends Mailable
