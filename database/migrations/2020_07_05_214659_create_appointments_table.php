@@ -19,7 +19,7 @@ class CreateAppointmentsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('type_id');
             $table->foreign('type_id')->references('id')->on('types');
-            $table->dateTime('date_of_appointment');
+            $table->timestamp('date_of_appointment', 0);
             $table->boolean('completed')->default(false);
             $table->boolean('cancelled')->default(false);
             $table->boolean('no_show')->default(false);
